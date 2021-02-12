@@ -6,21 +6,7 @@ import axios from 'axios'
 import Recaptcha from 'react-recaptcha';
 import {AuthContext} from '../../../context/Auth/Login'
 
-import {
-  CButton,
-  CSpinner,
-  CCard,
-  CCardBody,
-  CCardGroup,
-  CCol,
-  CContainer,
-  CForm,
-  CInput,
-  CInputGroup,
-  CInputGroupPrepend,
-  CInputGroupText,
-  CRow
-} from '@coreui/react'
+import {CButton,CSpinner,CCard,CCardBody,CCardGroup,CCol,CContainer,CForm,CInput,CInputGroup,CInputGroupPrepend,CInputGroupText,CRow} from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 
 

@@ -1,4 +1,4 @@
-import React, { lazy } from 'react'
+import React, { lazy, useContext , useEffect} from 'react'
 import {
   CBadge,
   CButton,
@@ -16,10 +16,17 @@ import CIcon from '@coreui/icons-react'
 
 import MainChartExample from '../charts/MainChartExample.js'
 
+import {AuthContext} from '../../context/Auth/Login'
+
 const WidgetsDropdown = lazy(() => import('../widgets/WidgetsDropdown.js'))
 const WidgetsBrand = lazy(() => import('../widgets/WidgetsBrand.js'))
 
-const Dashboard = () => {
+const Dashboard = (props) => {
+  const {dispatch} = useContext(AuthContext)
+
+  useEffect(() => {
+    dispatch({type :'checkLogin' , payload : props})    
+  }, [])
   return (
     <>
       <WidgetsDropdown />
