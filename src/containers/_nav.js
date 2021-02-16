@@ -34,6 +34,19 @@ const _nav =  [
   },
   {
     _tag: 'CSidebarNavDropdown',
+    name: 'Media',
+    route: '/media',
+    icon: 'cil-puzzle',
+    _children: [
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'AddMedia',
+        to: '/media/addMedia',
+      }
+    ]
+    },
+  {
+    _tag: 'CSidebarNavDropdown',
     name: 'Base',
     route: '/base',
     icon: 'cil-puzzle',

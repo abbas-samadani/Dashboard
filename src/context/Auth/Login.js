@@ -14,7 +14,7 @@ export const AuthReducer =(state , action) =>{
             const user = localStorage.getItem('token')
             console.log(user);            
             if(!user){
-                console.log('salam');
+                console.log('salaam');
                 //console.log(action.payload);
                 action.payload.history.push('/')
             }
