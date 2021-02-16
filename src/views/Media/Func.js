@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
-export const checkFile = (event) =>{
-    const files = event.target.files;
+export const checkFile = (event , files) =>{
+    //const files = event.target.files;
     let error = '';
     const types = ['image/jpeg' , 'image/png' , 'image/jpg'];
     for(let i=0 ; i<files.length ; i++) {
@@ -18,8 +18,8 @@ export const checkFile = (event) =>{
     }
 }
 
-export const maxSelectedFile = (event) =>{
-    const files = event.target.files;
+export const maxSelectedFile = (event , files) =>{
+    //const files = event.target.files;
     let error = '';
     if(files.length > 3) {
         event.target.value = null;
@@ -30,9 +30,8 @@ export const maxSelectedFile = (event) =>{
     return true
 }
 
-export const MaxSizeFile = (event) =>{    
-    const files = event.target.files;
-    console.log(files);
+export const MaxSizeFile = (event , files) =>{    
+    //const files = event.target.files;    
     let error = '';
     let maxSize = 3000000;
     for(let i=0 ; i<files.length ; i++) {

@@ -33,9 +33,8 @@ export default function AddMedia(props) {
     }, [])
 
     const handleFile = (e) => {
-        if(checkFile(e) , maxSelectedFile(e) , MaxSizeFile(e)) {
-            const files = e.target.files;
-            console.log(files);
+        const files = e.target.files;
+        if(checkFile(e , files) , maxSelectedFile(e , files) , MaxSizeFile(e , files)) {                        
             const newLoadedFiles = [...loadedFiles]
             for (let i = 0; i < files.length; i++) {
                 newLoadedFiles.push({
@@ -52,6 +51,28 @@ export default function AddMedia(props) {
         const filteredFile=loadedFiles.filter(file => file !== selectedFile)
         setLoadedFiles(filteredFile)
     }
+
+    const onDragOverHandler = (e) =>{
+        e.preventDefault();
+        
+    }
+
+    const onDropHandler = (e) =>{
+        e.preventDefault();
+        const files = e.dataTransfer.files;
+        if(checkFile(e , files) , maxSelectedFile(e , files) , MaxSizeFile(e , files)){
+            const newLoadedFiles = [...loadedFiles]
+            for (let i = 0; i < files.length; i++) {
+                newLoadedFiles.push({
+                    file: files[i],
+                    preview: URL.createObjectURL(files[i]),
+                    loaded: 0
+                })
+            }
+            setLoadedFiles(newLoadedFiles)
+        }
+        
+    }
     return (
         <CRow>
             <CCol xs="12">
@@ -61,7 +82,10 @@ export default function AddMedia(props) {
                     </CCardHeader>
                     <CCardBody>
                         <ToastContainer/>
-                        <div className={classes.addMediaSection}>
+                        <div className={classes.addMediaSection}
+                            onDragOver={onDragOverHandler}
+                            onDrop={onDropHandler}
+                        >
                             <div className={classes.filePreview}>
                                 {
                                     loadedFiles.map((file, index) => {                                        
