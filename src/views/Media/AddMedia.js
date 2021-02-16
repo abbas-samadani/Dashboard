@@ -20,6 +20,9 @@ import {
 
 } from '@coreui/react'
 import classes from './media.module.css';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {checkFile , maxSelectedFile , MaxSizeFile} from './Func'
 export default function AddMedia(props) {
 
     const [loadedFiles, setLoadedFiles] = useState([])
@@ -30,17 +33,20 @@ export default function AddMedia(props) {
     }, [])
 
     const handleFile = (e) => {
-        const files = e.target.files;
-        console.log(files);
-        const newLoadedFiles = [...loadedFiles]
-        for (let i = 0; i < files.length; i++) {
-            newLoadedFiles.push({
-                file: files[i],
-                preview: URL.createObjectURL(files[i]),
-                loaded: 0
-            })
+        if(checkFile(e) , maxSelectedFile(e) , MaxSizeFile(e)) {
+            const files = e.target.files;
+            console.log(files);
+            const newLoadedFiles = [...loadedFiles]
+            for (let i = 0; i < files.length; i++) {
+                newLoadedFiles.push({
+                    file: files[i],
+                    preview: URL.createObjectURL(files[i]),
+                    loaded: 0
+                })
+            }
+            setLoadedFiles(newLoadedFiles)
         }
-        setLoadedFiles(newLoadedFiles)
+       
     }
     const removeItem = (selectedFile) => {
         const filteredFile=loadedFiles.filter(file => file !== selectedFile)
@@ -54,6 +60,7 @@ export default function AddMedia(props) {
                         <h6>Add Media</h6>
                     </CCardHeader>
                     <CCardBody>
+                        <ToastContainer/>
                         <div className={classes.addMediaSection}>
                             <div className={classes.filePreview}>
                                 {
